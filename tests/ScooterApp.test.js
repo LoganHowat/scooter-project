@@ -4,11 +4,33 @@ const ScooterApp = require('../src/ScooterApp')
 
 // ScooterApp tests here
 
-// register user
+describe('Test ScooterApp', () => {
+    // register user
+    const ScoAp = new ScooterApp()
+    test('Testing that ScooterApp can register a new User', () => {
+        let user1 = ScoAp.registerUser('User1','password1',20)
+        expect(ScoAp.registeredUsers).toHaveProperty('User1',user1)
+    });
 
-// log in
+    // log in
+    test('Testing that User can be logged in using the login method', () => {
+        ScoAp.loginUser('User1','password1')
+        expect(ScoAp.registeredUsers['User1'].loggedIn).toBe(true)
+    });
 
-// log out
+    //logout
+    test('Testing that User can be logged in using the login method', () => {
+        ScoAp.logoutUser('User1')
+        expect(ScoAp.registeredUsers['User1'].loggedIn).toBe(false)
+    });
+
+    //Test createScooter
+    test('Testing that create scooter function can be called and create scooter instance', () => {
+        let scooter = ScoAp.createScooter('station1')
+        console.log(ScoAp.stations)
+        expect(ScoAp.stations['station1'][0]).toBe(scooter)//Checks that the scooter was added to the array
+    });
+});
 
 // rent scooter
 
