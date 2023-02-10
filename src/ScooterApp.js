@@ -54,11 +54,13 @@ class ScooterApp {
   rentScooter(scooter,user){
     for (const key in this.stations){
       for (let i=0;i<this.stations[key].length;i++){
-        if (scooter == this.stations[key][i]['serial']){
+        if (scooter == this.stations[key][i]['serial'] && this.stations[key][i]['station'] != null){
           let tempScooter = this.stations[key][i]
           tempScooter.rent()
           tempScooter.user = user;
           this.stations[key].splice(i,1)
+        }else if(scooter == this.stations[key][i]['serial'] && this.stations[key][i]['station'] == null){
+          throw new Error('scooter already in use')
         }
       }
     }
