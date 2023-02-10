@@ -27,8 +27,15 @@ describe('Test ScooterApp', () => {
     //Test createScooter
     test('Testing that create scooter function can be called and create scooter instance', () => {
         let scooter = ScoAp.createScooter('station1')
-        console.log(ScoAp.stations)
         expect(ScoAp.stations['station1'][0]).toBe(scooter)//Checks that the scooter was added to the array
+    });
+
+
+    test('Testing that we can rent scooter easily', () => {
+        let scooter2 = ScoAp.createScooter('station1')
+        ScoAp.rentScooter(2,'User1')
+        expect(scooter2.station).toBe(null)//Scooter station should be null as it will be checked out to a user
+        expect(scooter2.user).toBe('User1')
     });
 });
 

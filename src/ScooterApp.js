@@ -50,6 +50,19 @@ class ScooterApp {
       throw new Error('no such station')
     }
   }
+
+  rentScooter(scooter,user){
+    for (const key in this.stations){
+      for (let i=0;i<this.stations[key].length;i++){
+        if (scooter == this.stations[key][i]['serial']){
+          let tempScooter = this.stations[key][i]
+          tempScooter.rent()
+          tempScooter.user = user;
+          this.stations[key].splice(i,1)
+        }
+      }
+    }
+  } 
 }
 
 module.exports = ScooterApp
