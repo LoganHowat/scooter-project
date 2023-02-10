@@ -66,10 +66,14 @@ class ScooterApp {
     }
   } 
 
-
   print(){
     console.log(this.registeredUsers)
     console.log(this.stations)
+  }
+
+
+  dockScooter(scooter,station){
+    //
   }
 }
 

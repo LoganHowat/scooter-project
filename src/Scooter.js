@@ -18,6 +18,28 @@ class Scooter{
       this.station = null;
     }
   }
+
+  dock(station){
+    this.station = station;
+    this.user = null;
+    this.charge = Math.floor((Math.random() * 100));
+    recharge()
+  }
+
+  async recharge(){
+    console.log('Starting charge');
+    while(this.charge<100){
+      await new Promise(resolve => setTimeout(resolve, 1000)); // wait 1 seconds
+      this.charge += 25
+      if (this.charge<100){
+        console.log(this.charge)
+      }
+    }
+    if (this.charge>100){
+      this.charge = 100 
+    }
+    console.log('Charge complete');
+  }
 }
 
 
