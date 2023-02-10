@@ -45,6 +45,7 @@ class ScooterApp {
     if (this.stations.hasOwnProperty(station)){
       let scooter = new Scooter(station)
       this.stations[station].push(scooter)
+      console.log('created new scooter')
       return scooter
     }else{
       throw new Error('no such station')
@@ -67,6 +68,7 @@ class ScooterApp {
     if (!Found){
       throw new Error('scooter already in use')
     }
+    console.log('scooter rented')
   } 
 
   print(){
