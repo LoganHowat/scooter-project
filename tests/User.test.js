@@ -23,7 +23,7 @@ test('Testing login method', () => {
     expect(User1.loggedIn).toBe(true)
 });
 test('Testing login method fails', () => {
-    expect(() => User1.login('assasas')).toThrowError('Username or password is incorrect')
+    expect(() => User1.login('invalid')).toThrowError('Username or password is incorrect')
 });
 // test logout
 test('Testing logout method', () => {
