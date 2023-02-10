@@ -10,9 +10,9 @@ class ScooterApp {
 
   registerUser(username,password,age){
     if (this.registeredUsers.hasOwnProperty(username)){
-      console.log('already registered')
+      throw new Error('already registered')
     }else if(age<18){
-      console.log('too young to register')
+      throw new Error('too young to register')
     }else{
       //create a new instance of User to add the the registered users object
       let user = new User(username,password,age)
@@ -52,6 +52,7 @@ class ScooterApp {
   }
 
   rentScooter(scooter,user){
+    let Found = false;
     for (const key in this.stations){
       for (let i=0;i<this.stations[key].length;i++){
         if (scooter == this.stations[key][i]['serial'] && this.stations[key][i]['station'] != null){
@@ -59,10 +60,12 @@ class ScooterApp {
           tempScooter.rent()
           tempScooter.user = user;
           this.stations[key].splice(i,1)
-        }else if(scooter == this.stations[key][i]['serial'] && this.stations[key][i]['station'] == null){
-          throw new Error('scooter already in use')
+          Found = true;
         }
       }
+    }
+    if (!Found){
+      throw new Error('scooter already in use')
     }
   } 
 
@@ -73,7 +76,22 @@ class ScooterApp {
 
 
   dockScooter(scooter,station){
-    //
+    if (this.stations.hasOwnProperty(station) && scooter.station != station){
+      //This for loop removes the scooter from the station array to avoid duplication
+      for (const key in this.stations){
+        for (let i=0;i<this.stations[key].length;i++){
+          if (scooter == this.stations[key][i]){
+            this.stations[key].splice(i,1)
+          }
+        }
+      }  
+      this.stations[station].push(scooter)
+      scooter.dock(station)
+    }else if (this.stations.hasOwnProperty(station) == false){
+      throw new Error('no such station')
+    }else if(scooter.station == station){
+      throw new Error('scooter already at station')
+    }
   }
 }
 

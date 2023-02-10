@@ -12,7 +12,7 @@ class Scooter{
   rent(){
     if (this.charge<20){
       throw new Error('scooter needs to charge')
-    }else if(this.isBroke){
+    }else if(this.isBroken){
       throw new Error('scooter needs repair')
     }else{
       this.station = null;
@@ -22,8 +22,7 @@ class Scooter{
   dock(station){
     this.station = station;
     this.user = null;
-    this.charge = Math.floor((Math.random() * 100));
-    recharge()
+    console.log('scooter is docked')
   }
 
   async recharge(){
@@ -39,6 +38,12 @@ class Scooter{
       this.charge = 100 
     }
     console.log('Charge complete');
+  }
+
+  async requestRepair(){
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    this.isBroken = false;
+    console.log('Scooter is repaired')
   }
 }
 

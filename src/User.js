@@ -1,8 +1,8 @@
 class User {
   constructor(username,password,age){
-    this.username = username;
-    this.password = password;
-    this.age = age;
+    this.username = String(username);
+    this.password = String(password);
+    this.age = Number(age);
     this.loggedIn = false;
   }
 
