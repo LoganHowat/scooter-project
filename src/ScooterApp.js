@@ -52,7 +52,7 @@ class ScooterApp {
     }
   }
 
-  rentScooter(scooter,user){
+  rentScooter(scooter,user){//User inputs a serial as it makes it easier for the user
     let Found = false;
     for (const key in this.stations){
       for (let i=0;i<this.stations[key].length;i++){

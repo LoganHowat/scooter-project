@@ -22,11 +22,11 @@ class Scooter{
   dock(station){
     this.station = station;
     this.user = null;
-    console.log('scooter is docked')
+    console.log(`Scooter#${this.serial} is docked`)
   }
 
   async recharge(){
-    console.log('Starting charge');
+    console.log(`Starting charge for Scooter#${this.serial}`);
     while(this.charge<100){
       await new Promise(resolve => setTimeout(resolve, 1000)); // wait 1 seconds
       this.charge += 25
@@ -43,7 +43,7 @@ class Scooter{
   async requestRepair(){
     await new Promise(resolve => setTimeout(resolve, 5000));
     this.isBroken = false;
-    console.log('Scooter is repaired')
+    console.log(`Scooter#${this.serial} is repaired`)
   }
 }
 
