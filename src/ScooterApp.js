@@ -65,6 +65,12 @@ class ScooterApp {
       }
     }
   } 
+
+
+  print(){
+    console.log(this.registeredUsers)
+    console.log(this.stations)
+  }
 }
 
 module.exports = ScooterApp
