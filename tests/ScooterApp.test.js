@@ -78,7 +78,13 @@ describe('Test ScooterApp', () => {
         let scooter3 = ScoAp.createScooter('station2')
         expect(() => ScoAp.dockScooter(scooter3,'station2')).toThrowError('scooter already at station')
     });
+
+    //testing print method
+    test('Testing the print method logs the registered users', async () => {
+        const logSpy = jest.spyOn(console,'log')
+        ScoAp.print()
+        expect(logSpy).toHaveBeenCalledWith(ScoAp.registeredUsers)
+        expect(logSpy).toHaveBeenCalledWith(ScoAp.stations)
+    });
 });
 
-
-// dock scooter
